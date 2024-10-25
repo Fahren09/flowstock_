@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button, Card, Image, Navbar, Dropdown, Nav }
 import { FaUserEdit, FaBell, FaCog } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 import './Estilo.css';
-import logo from './img/LogoFlowStock.png'; // Ajusta el path si es necesario
+import logo from './img/LogoFlowStock_6.png'; // Ajusta el path si es necesario
 
 function MiCuenta() {
   const navigate = useNavigate();
@@ -70,10 +70,10 @@ function MiCuenta() {
                   <Dropdown.Toggle variant="transparent" id="dropdown-basic" style={{ backgroundColor: 'transparent', border: 'none', color: '#70B69B' }}>
                     <FaCog style={{ cursor: 'pointer' }} />
                   </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item onClick={() => handleRedirect('/SistemaDeInventario')}>Volver a inventario</Dropdown.Item>
-                    <Dropdown.Item onClick={() => handleRedirect('/cerrar-sesion')}>Cerrar sesión</Dropdown.Item>
-                  </Dropdown.Menu>
+                  <Dropdown.Menu style={{ backgroundColor: '#0F8D89'}} >
+                      <Dropdown.Item onClick={() => handleRedirect('/SistemaDeInventario')} style={{ backgroundColor: '#0F8D89', color: '#C6F8CF' }} >Volver al inventario</Dropdown.Item>
+                      <Dropdown.Item onClick={() => handleRedirect('/IniciarSesion')} style={{ backgroundColor: '#0F8D89', color: '#C6F8CF' }} >Cerrar sesión</Dropdown.Item>
+                    </Dropdown.Menu>
                 </Dropdown>
                 <div className="d-flex align-items-center me-4">
                   <img
@@ -115,7 +115,7 @@ function MiCuenta() {
                         onChange={handleChange}
                         disabled={!editMode}
                         style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                        className="me-3-usuario"
+                        className="me-2-principal"
                       />
                     </Col>
                   </Form.Group>
@@ -130,7 +130,7 @@ function MiCuenta() {
                         onChange={handleChange}
                         disabled={!editMode}
                         style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                        className="me-3-usuario"
+                        className="me-2-principal"
                       />
                     </Col>
                   </Form.Group>
@@ -140,7 +140,7 @@ function MiCuenta() {
                     <Col sm={9}>
                       <Form.Control type="text" value={userData.tipo} disabled
                       style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                      className="me-3-usuario"
+                      className="me-2-principal"
                       />
                       
                     </Col>
@@ -152,7 +152,7 @@ function MiCuenta() {
                       <Col sm={9}>
                         <Form.Control type="password" placeholder="Nueva contraseña" 
                         style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                        className="me-3-usuario"
+                        className="me-2-principal"
                         />
                       </Col>
                     </Form.Group>
@@ -166,7 +166,7 @@ function MiCuenta() {
                     ) : (
                       <>
                         <Button variant="secondary" className="me-2" onClick={handleEdit}>Cancelar</Button>
-                        <Button variant="success" onClick={handleSave}>Guardar</Button>
+                        <Button variant="success" onClick={handleSave} style={{ backgroundColor: '#C6F8CF', color: '#232D47', border: 'none'}} >Guardar</Button>
                       </>
                     )}
                   </div>

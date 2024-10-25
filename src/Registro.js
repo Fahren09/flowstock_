@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import './Estilo.css'; // Asegúrate de que los estilos ya están creados
-import logo from "./img/LogoFlowStock.png"; // Ajusta el path si es necesario
+import './Estilo.css'; 
+import logo from "./img/LogoFlowStock_6.png"; 
 
 function RegistroUsuarios() {
   const [formData, setFormData] = useState({
@@ -50,7 +50,7 @@ function RegistroUsuarios() {
                   onChange={handleChange}
                   required
                   style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                  className="me-3-usuario"
+                  className="me-2-principal"
                 />
               </Form.Group>
 
@@ -64,7 +64,7 @@ function RegistroUsuarios() {
                   onChange={handleChange}
                   required
                   style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                  className="me-3-usuario"
+                  className="me-2-principal"
                 />
               </Form.Group>
 
@@ -78,7 +78,7 @@ function RegistroUsuarios() {
                   onChange={handleChange}
                   required
                   style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                  className="me-3-usuario"
+                  className="me-2-principal"
                 />
               </Form.Group>
 
@@ -90,7 +90,7 @@ function RegistroUsuarios() {
                   onChange={handleChange}
                   accept="image/*"
                   style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                  className="me-3-usuario"
+                  className="me-2-principal"
                 />
               </Form.Group>
 
@@ -101,7 +101,7 @@ function RegistroUsuarios() {
                   value={formData.tipo} 
                   onChange={handleChange}
                   style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
-                  className="me-3-usuario"
+                  className="me-2-principal"
                 >
                   <option value="administrador">Administrador</option>
                   <option value="empleado">Empleado</option>

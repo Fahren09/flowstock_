@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import './Estilo.css'; // Asegúrate de que los estilos ya están creados
-import logo from "./img/LogoFlowStock.png"; // Ajusta el path si es necesario
+import logo from "./img/LogoFlowStock_6.png"; // Ajusta el path si es necesario
 
 function IniciarSesion() {
   const [formData, setFormData] = useState({
@@ -44,7 +44,7 @@ function IniciarSesion() {
                   onChange={handleChange}
                   required
                   style={{ backgroundColor: '#2D4076', color: '#C6F8CF' }}
-                   className="me-3-usuario"
+                   className="me-2-principal"
                 />
               </Form.Group>
 
@@ -58,7 +58,7 @@ function IniciarSesion() {
                   onChange={handleChange}
                   required
                   style={{ backgroundColor: '#2D4076', color: '#C6F8CF' }}
-                   className="me-3-usuario"
+                   className="me-2-principal"
                 />
               </Form.Group>
 

@@ -4,7 +4,9 @@ import Login from "./IniciarSesion";
 import Registro from "./Registro"; 
 import MiCuenta from './MiCuenta';
 import InventorySystem from "./SistemaDeInventario"; 
-//import Categorias from "./cat"; 
+import Categorias from './Categoria';
+//import Proveedores from './Proveedores';
+//import Visitas from './Visitas';
 import './App.css';
 
 
@@ -17,11 +19,8 @@ function App() {
         <Route path="/IniciarSesion" element={<Login />} />
         <Route path="/Registro" element={<Registro />} />
         <Route path="/SistemaDeinventario" element={<InventorySystem />} />
-        <Route path="/MiCuenta" element={<MiCuenta/>} 
-         />
-
-
-
+        <Route path="/MiCuenta" element={<MiCuenta/>} />
+        <Route path="/Categoria" element={<Categorias />} />
         {/* Puedes agregar más rutas aquí */}
       </Routes>
     </Router>
