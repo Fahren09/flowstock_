@@ -1,7 +1,7 @@
 // src/components/Pedidos.js
 import React, { useState } from 'react';
-import { Form, Button, ListGroup } from 'react-bootstrap';
-import { FaPlus } from 'react-icons/fa';
+import { Form, Button, ListGroup, Col } from 'react-bootstrap';
+import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 function Pedidos() {
   const [pedidos, setPedidos] = useState([
@@ -27,11 +27,20 @@ function Pedidos() {
 
   return (
     <div>
-      <h5>Registrar nuevo pedido</h5>
+      <h5 style={{ color: '#C6F8CF' }} >Registrar nuevo pedido</h5>
+      <Col xs={9}>
+              <Form.Control 
+                type="text" 
+                placeholder="Buscar..." 
+                style={{ backgroundColor: '#2D4076', borderColor: '#C6F8CF', color: '#C6F8CF' }} 
+                className="search-input"
+              />
+      </Col>
       <Form className="d-flex mb-3">
         <Form.Select
-          className="me-2"
+          className="me-2-principal"
           value={tipo}
+          style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
           onChange={(e) => setTipo(e.target.value)}
         >
           <option value="envio">Envio</option>
@@ -39,8 +48,9 @@ function Pedidos() {
         </Form.Select>
 
         <Form.Select
-          className="me-2"
+          className="me-2-principal"
           value={empresa}
+          style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
           onChange={(e) => setEmpresa(e.target.value)}
         >
           {empresas.map((empresa, index) => (
@@ -52,30 +62,24 @@ function Pedidos() {
 
         <Form.Control
           type="date"
-          className="me-2"
+          className="me-2-principal"
           value={fechaLlegada}
+          style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
           onChange={(e) => setFechaLlegada(e.target.value)}
         />
-        
-        <Form.Select
-          className="me-2"
-          value={estado}
-          onChange={(e) => setEstado(e.target.value)}
-        >
-          <option value="pendiente">Pendiente</option>
-          <option value="completado">Completado</option>
-          <option value="cancelado">Cancelado</option>
-          <option value="enviado">Enviado</option>
-        </Form.Select>
 
-        <Button variant="dark" onClick={handleAgregar}>
+        <Button variant="dark" onClick={handleAgregar}
+        style={{ backgroundColor: '#232D47', color: '#C6F8CF'}}
+        >
           <FaPlus className="me-2" /> Agregar
         </Button>
       </Form>
 
       <ListGroup>
         {pedidos.map((pedido, index) => (
-          <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
+          <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center"
+          style={{ backgroundColor: '#232D47', color: '#C6F8CF',border: 'none'}}
+          >
             <div>
               <strong>Tipo: {pedido.tipo}</strong> <br />
               <small>Empresa: {pedido.empresa}</small> <br />
@@ -84,11 +88,15 @@ function Pedidos() {
               <small>Estado: {pedido.estado}</small>
             </div>
             <div>
-              <Button variant="outline-secondary" size="sm" className="me-2">
-                Editar
+              <Button variant="outline-secondary" size="sm" className="me-2"
+              style={{ backgroundColor: '#C6F8CF', color: '#232D47',border: 'none'}}
+              >
+              <FaEdit />Editar
               </Button>
-              <Button variant="outline-secondary" size="sm" className="ms-2">
-                Eliminar
+              <Button variant="outline-secondary" size="sm" className="ms-2"
+              style={{ backgroundColor: '#C6F8CF', color: '#232D47',border: 'none'}}
+              >
+              <FaTrash />Eliminar
               </Button>
             </div>
           </ListGroup.Item>

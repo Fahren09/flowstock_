@@ -1,6 +1,6 @@
 // src/components/Productos.js
 import React, { useState } from 'react';
-import { Form, Button, ListGroup, Dropdown } from 'react-bootstrap';
+import { Form, Button, ListGroup, Col } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 function Productos() {
@@ -28,8 +28,10 @@ function Productos() {
   const [nombre, setNombre] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [stock, setStock] = useState('');
-  const [categoria, setCategoria] = useState('');
+  const [categoria, setCategoria] = useState('Electrónica');
   const [estado, setEstado] = useState('activo');
+
+  const categorias = ['Electrónica', 'Muebles', 'Ropa', 'Juguetes', 'Alimentos'];
 
   const handleAgregarProducto = () => {
     const nuevoProducto = {
@@ -45,18 +47,27 @@ function Productos() {
     setNombre('');
     setDescripcion('');
     setStock('');
-    setCategoria('');
+    setCategoria('Electrónica');
     setEstado('activo');
   };
 
   return (
     <div>
-      <h5>Registrar nuevo producto</h5>
+      <h5 style={{ color: '#C6F8CF' }}>Registrar nuevo producto</h5>
+      <Col xs={9}>
+        <Form.Control
+          type="text"
+          placeholder="Buscar..."
+          style={{ backgroundColor: '#2D4076', borderColor: '#C6F8CF', color: '#C6F8CF' }}
+          className="search-input"
+        />
+      </Col>
       <Form className="d-flex mb-3">
         <Form.Control
           type="text"
           placeholder="Nombre del producto"
-          className="me-2"
+          className="me-2-principal"
+          style={{ backgroundColor: '#2D4076', color: '#C6F8CF', marginRight: '15px' }}
           value={nombre}
           onChange={(e) => setNombre(e.target.value)}
         />
@@ -64,43 +75,50 @@ function Productos() {
           as="textarea"
           rows={2}
           placeholder="Descripción del producto"
-          className="me-2"
+          className="me-2-principal"
+          style={{ backgroundColor: '#2D4076', color: '#C6F8CF', marginRight: '15px' }}
           value={descripcion}
           onChange={(e) => setDescripcion(e.target.value)}
         />
         <Form.Control
           type="number"
           placeholder="Cantidad en stock"
-          className="me-2"
+          className="me-2-principal"
+          style={{ backgroundColor: '#2D4076', color: '#C6F8CF', marginRight: '15px' }}
           value={stock}
           onChange={(e) => setStock(e.target.value)}
         />
-        <Form.Control
-          type="text"
-          placeholder="Categoría"
-          className="me-2"
+        
+        {/* Combobox de Categoría */}
+        <Form.Select
+          className="me-2-principal"
+          style={{ backgroundColor: '#2D4076', color: '#C6F8CF', marginRight: '15px' }}
           value={categoria}
           onChange={(e) => setCategoria(e.target.value)}
-        />
-      <Form.Select
-        className="me-2"
-        value={estado}
-        onChange={(e) => setEstado(e.target.value)}
-      >
-        <option value="activo">Activo</option>
-        <option value="inactivo">Inactivo</option>
-        <option value="descontinuado">Descontinuado</option>
-        <option value="reemplazado">Reemplazado</option>
-      </Form.Select>
-      
-        <Button variant="dark" onClick={handleAgregarProducto}>
+        >
+          {categorias.map((cat, index) => (
+            <option key={index} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </Form.Select>
+
+        <Button
+          variant="dark"
+          onClick={handleAgregarProducto}
+          style={{ backgroundColor: '#232D47', color: '#C6F8CF' }}
+        >
           <FaPlus className="me-2" /> Agregar producto
         </Button>
       </Form>
 
       <ListGroup>
         {productos.map((producto) => (
-          <ListGroup.Item key={producto.id} className="d-flex justify-content-between align-items-center">
+          <ListGroup.Item
+            key={producto.id}
+            className="d-flex justify-content-between align-items-center"
+            style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}
+          >
             <div>
               <strong>{producto.nombre}</strong> <br />
               <small>Descripción: {producto.descripcion}</small> <br />
@@ -110,10 +128,19 @@ function Productos() {
               <small>Fecha de creación: {producto.fecha_creacion}</small>
             </div>
             <div>
-              <Button variant="outline-secondary" size="sm" className="me-2">
+              <Button
+                variant="outline-secondary"
+                size="sm"
+                className="me-2"
+                style={{ backgroundColor: '#C6F8CF', color: '#232D47', border: 'none' }}
+              >
                 <FaEdit /> Editar
               </Button>
-              <Button variant="outline-danger" size="sm">
+              <Button
+                variant="outline-danger"
+                size="sm"
+                style={{ backgroundColor: '#C6F8CF', color: '#232D47', border: 'none' }}
+              >
                 <FaTrash /> Eliminar
               </Button>
             </div>

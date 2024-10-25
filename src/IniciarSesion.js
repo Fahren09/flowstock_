@@ -1,65 +1,86 @@
-// IniciarSesion.js
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
-import logo from "./img/LogoFlowStock.png"; 
-import { Link } from "react-router-dom";
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './Estilo.css'; // Asegúrate de que los estilos ya están creados
+import logo from "./img/LogoFlowStock.png"; // Ajusta el path si es necesario
 
-const Login = () => {
+function IniciarSesion() {
   const [formData, setFormData] = useState({
-    username: "",
-    password: "",
+    email: '',
+    contraseña: '',
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log('Datos enviados:', formData);
+    // Aquí puedes agregar la lógica para autenticar al usuario
   };
 
   return (
-    <div className="container my-5">
-      <nav style={{ position: 'absolute', top: '10px', left: '10px' }}>
-        <img src={logo} alt="FlowStock" style={{ width: "80px" }} />
-      </nav>
-
-      <div className="row justify-content-center mt-4">
-        <div className="col-md-6">
-          <form onSubmit={handleSubmit} className="p-4 border rounded shadow">
-            <h3 className="text-center mb-4">FlowStock - Iniciar Sesión</h3>
-
-            <div className="mb-3">
-              <label htmlFor="username" className="form-label">Nombre de Usuario</label>
-              <input type="text" className="form-control" id="username" name="username" value={formData.username} onChange={handleChange} required />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">Contraseña</label>
-              <input type="password" className="form-control" id="password" name="password" value={formData.password} onChange={handleChange} required />
-            </div>
-
-            <button type="submit" className="btn btn-dark w-100">Iniciar Sesión</button>
-          </form>
-
-          <div className="text-center mt-3">
-          <p>
-              ¿Aun no tienes cuenta?{" "}
-              <a href="/Registro" className="fw-bold text-dark">
-                Registrate
-              </a>
-            </p>
-          </div>
-        </div>
+    <Container fluid className="vh-100" style={{ backgroundColor: '#232D47', position: 'relative' }}>
+      
+      {/* Logo en la esquina superior izquierda */}
+      <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
+        <img src={logo} alt="logo" style={{ width: '100px', height: '100px' }} />
       </div>
 
-      <footer className="text-center mt-5">
-        <p>&copy; 2024 FlowStock - Todos los derechos reservados</p>
-      </footer>
-    </div>
-  );
-};
+      <Row className="justify-content-center align-items-center h-100">
+        <Col xs={12} md={6}>
+          <Card className="p-4" style={{ backgroundColor: '#2D4076', color: '#C6F8CF' }}>
+            <h3 className="text-center mb-4" style={{ color: '#FEA099' }}>Iniciar Sesión</h3>
+            
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formEmail" className="mb-3">
+                <Form.Label>Correo Electrónico</Form.Label>
+                <Form.Control 
+                  type="email" 
+                  placeholder="Ingresa tu correo electrónico"
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange}
+                  required
+                  style={{ backgroundColor: '#2D4076', color: '#C6F8CF' }}
+                   className="me-3-usuario"
+                />
+              </Form.Group>
 
-export default Login;
+              <Form.Group controlId="formContraseña" className="mb-3">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control 
+                  type="password" 
+                  placeholder="Ingresa tu contraseña"
+                  name="contraseña" 
+                  value={formData.contraseña} 
+                  onChange={handleChange}
+                  required
+                  style={{ backgroundColor: '#2D4076', color: '#C6F8CF' }}
+                   className="me-3-usuario"
+                />
+              </Form.Group>
+
+              {/* Centrar el botón de Iniciar Sesión */}
+              <div className="text-center">
+                <Button variant="primary" type="submit" style={{ backgroundColor: '#C6F8CF', color: '#232D47', border: 'none' }}>
+                  Iniciar Sesión
+                </Button>
+              </div>
+            </Form>
+
+            {/* Enlace para registrarse */}
+            <div className="text-center mt-4">
+              <p style={{ color: '#C6F8CF' }}>¿No tienes cuenta? 
+                <Link to="/Registro" style={{ color: '#FEA099' }}> Regístrate</Link>
+              </p>
+            </div>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+export default IniciarSesion;

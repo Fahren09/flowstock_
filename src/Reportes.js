@@ -1,6 +1,6 @@
 // src/components/Reportes.js
 import React, { useState } from 'react';
-import { Form, Button, ListGroup, Modal } from 'react-bootstrap';
+import { Form, Button, ListGroup, Modal, Col } from 'react-bootstrap';
 import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 function Reportes() {
@@ -52,33 +52,51 @@ function Reportes() {
 
   return (
     <div>
-      <h5>Gestionar Reportes</h5>
-      <Button variant="dark" onClick={() => setShow(true)}>
-        <FaPlus className="me-2" /> Agregar Reporte
-      </Button>
+      <h5 style={{ color: '#C6F8CF' }}>Gestionar Reportes</h5>
 
-      <Modal show={show} onHide={resetForm}>
-        <Modal.Header closeButton>
+      <Col xs={9}>
+        <Form.Control 
+          type="text" 
+          placeholder="Buscar..." 
+          style={{ backgroundColor: '#2D4076', borderColor: '#C6F8CF', color: '#C6F8CF' }} 
+          className="search-input"
+        />
+      </Col>
+
+      {/* Contenedor para el botón */}
+      <div className="d-flex justify-content-end mt-3">
+        <Button 
+          variant="dark" 
+          onClick={() => setShow(true)}
+          style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}
+        >
+          <FaPlus className="me-2" /> Agregar Reporte
+        </Button>
+      </div>
+
+      <Modal show={show} onHide={resetForm} >
+        <Modal.Header closeButton style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}>
           <Modal.Title>{editIndex !== null ? 'Editar Reporte' : 'Nuevo Reporte'}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}>
           <Form>
-            <Form.Group controlId="formFecha">
+            <Form.Group controlId="formFecha" style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}>
               <Form.Label>Fecha del Reporte</Form.Label>
               <Form.Control
                 type="date"
                 value={fecha}
                 onChange={(e) => setFecha(e.target.value)}
                 required
+                style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}
               />
             </Form.Group>
           </Form>
         </Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}>
           <Button variant="secondary" onClick={resetForm}>
             Cancelar
           </Button>
-          <Button variant="primary" onClick={handleAgregar}>
+          <Button variant="primary" onClick={handleAgregar } style={{ backgroundColor: '#C6F8CF', color: '#232D47', border: 'none'}}>
             {editIndex !== null ? 'Actualizar' : 'Agregar'}
           </Button>
         </Modal.Footer>
@@ -86,7 +104,9 @@ function Reportes() {
 
       <ListGroup className="mt-3">
         {reportes.map((reporte, index) => (
-          <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
+          <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center"
+            style={{ backgroundColor: '#232D47', color: '#C6F8CF', border: 'none' }}
+          >
             <div>
               <strong>Fecha: {reporte.fecha}</strong> <br />
               <small>Estado: {reporte.estado === 1 ? 'Activo' : 'Inactivo'}</small>

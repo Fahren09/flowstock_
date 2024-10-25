@@ -1,18 +1,54 @@
-/* Clase para el textbox */
-.search-input {
-    border: none; /* Elimina todos los bordes */
-    border-bottom: 3px solid #0F8D89; /* Solo el borde inferior */
-    outline: none; /* Elimina el outline al enfocar */
-    padding: 0.5rem 0; /* Padding vertical para un mejor espaciado */
-  }
+  /* Estilo para los inputs de texto */
+input.search-input,
+input.me-2-principal {
+    color: #C6F8CF !important;
+    background-color: #2D4076 !important;
+    border: none;
+    border-bottom: 3px solid #C6F8CF;
+    outline: none;
+    padding: 0.5rem 0;
+}
 
 /* Cambiar color del placeholder */
-.search-input::placeholder {
-    color: #0F8D89; /* Cambia el color del placeholder */
-    opacity: 1; /* Asegúrate de que el placeholder no sea transparente */
-  }
-  
-  .custom-tab-border {
-    border-bottom: 4px solid #C6F8CF; /* Cambia el grosor del borde aquí */
-  }
-  
+input.search-input::placeholder,
+input.me-2-principal::placeholder {
+    color: #C6F8CF !important;
+    opacity: 1;
+}
+
+/* Estilo para el textarea */
+textarea.me-2-principal {
+    color: #C6F8CF !important;
+    background-color: #2D4076 !important;
+    border: none;
+    border-bottom: 3px solid #C6F8CF;
+    outline: none;
+    padding: 0.5rem 0;
+    resize: vertical; /* Permite redimensionar solo en vertical */
+}
+
+/* Cambiar color del placeholder en textarea */
+textarea.me-2-principal::placeholder {
+    color: #C6F8CF !important;
+    opacity: 1;
+}
+
+/* Estilo para el select (combobox) */
+select.me-2-principal {
+    color: #C6F8CF !important;
+    background-color: #2D4076 !important;
+    border: none;
+    border-bottom: 3px solid #C6F8CF;
+    outline: none;
+    padding: 0.5rem 0;
+    appearance: none; /* Elimina la flecha de selección en algunos navegadores */
+}
+
+/* Flecha de selección para el select (opcional, si deseas un estilo personalizado) */
+select.me-2-principal::-ms-expand {
+    display: none;
+}
+
+.nav-tabs.custom-tab-border {
+  border-bottom: 4px solid #C6F8CF; /* Cambia el grosor del borde aquí */
+}

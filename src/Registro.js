@@ -1,140 +1,132 @@
-import React, { useState } from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from 'react';
+import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import './Estilo.css'; // Asegúrate de que los estilos ya están creados
 import logo from "./img/LogoFlowStock.png"; // Ajusta el path si es necesario
 
-const Register = () => {
+function RegistroUsuarios() {
   const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    userType: "Empleado",
-    userImage: null,
+    nombre: '',
+    email: '',
+    contraseña: '',
+    tipo: 'empleado',
+    foto: null,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleImageChange = (e) => {
-    setFormData({ ...formData, userImage: e.target.files[0] });
+    if (e.target.name === 'foto') {
+      setFormData({ ...formData, foto: e.target.files[0] });
+    } else {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    console.log('Datos enviados:', formData);
   };
 
   return (
-    <div className="container my-5">
-      {/* Navbar/Encabezado */}
-      <nav style={{ position: 'absolute', top: '10px', left: '10px' }}>
-  <img src={logo} alt="FlowStock" style={{ width: "80px" }} />
-</nav>
-
-
-      <div className="row justify-content-center mt-4">
-        <div className="col-md-6">
-          {/* Formulario de registro */}
-          <form onSubmit={handleSubmit} className="p-4 border rounded shadow">
-            <h3 className="text-center mb-4">FlowStock - Registro</h3>
-
-            <div className="mb-3">
-              <label htmlFor="username" className="form-label">
-                Nombre de Usuario
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                id="username"
-                name="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="email" className="form-label">
-                Correo Electrónico
-              </label>
-              <input
-                type="email"
-                className="form-control"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                className="form-control"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="userImage" className="form-label">
-                Imagen de Usuario
-              </label>
-              <input
-                type="file"
-                className="form-control"
-                id="userImage"
-                onChange={handleImageChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label htmlFor="userType" className="form-label">
-                Tipo de Usuario
-              </label>
-              <select
-                className="form-select"
-                id="userType"
-                name="userType"
-                value={formData.userType}
-                onChange={handleChange}
-              >
-                <option value="Empleado">Empleado</option>
-                <option value="Administrador">Administrador</option>
-              </select>
-            </div>
-
-            <button type="submit" className="btn btn-dark w-100">
-              Registrar
-            </button>
-          </form>
-
-          {/* Pregunta si ya tiene cuenta */}
-          <div className="text-center mt-3">
-            <p>
-              ¿Ya tienes cuenta?{" "}
-              <a href="/IniciarSesion" className="fw-bold text-dark">
-                Iniciar sesión
-              </a>
-            </p>
-          </div>
-        </div>
+    <Container fluid className="vh-100" style={{ backgroundColor: '#232D47', position: 'relative' }}>
+      
+      {/* Logo en la esquina superior izquierda */}
+      <div style={{ position: 'absolute', top: '20px', left: '20px' }}>
+        <img src={logo} alt="logo" style={{ width: '100px', height: '100px' }} />
       </div>
 
-      {/* Footer */}
-      <footer className="text-center mt-5">
-        <p>&copy; 2024 FlowStock - Todos los derechos reservados</p>
-      </footer>
-    </div>
-  );
-};
+      <Row className="justify-content-center align-items-center h-100">
+        <Col xs={12} md={6}>
+          <Card className="p-4" style={{ backgroundColor: '#2D4076', color: '#C6F8CF' }}>
+            <h3 className="text-center mb-4" style={{ color: '#FEA099' }}>Registro de Usuario</h3>
+            
+            <Form onSubmit={handleSubmit}>
+              <Form.Group controlId="formNombre" className="mb-3">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control 
+                  type="text" 
+                  placeholder="Ingresa tu nombre"
+                  name="nombre" 
+                  value={formData.nombre} 
+                  onChange={handleChange}
+                  required
+                  style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
+                  className="me-3-usuario"
+                />
+              </Form.Group>
 
-export default Register;
+              <Form.Group controlId="formEmail" className="mb-3">
+                <Form.Label>Correo Electrónico</Form.Label>
+                <Form.Control 
+                  type="email" 
+                  placeholder="Ingresa tu correo electrónico"
+                  name="email" 
+                  value={formData.email} 
+                  onChange={handleChange}
+                  required
+                  style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
+                  className="me-3-usuario"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formContraseña" className="mb-3">
+                <Form.Label>Contraseña</Form.Label>
+                <Form.Control 
+                  type="password" 
+                  placeholder="Ingresa tu contraseña"
+                  name="contraseña" 
+                  value={formData.contraseña} 
+                  onChange={handleChange}
+                  required
+                  style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
+                  className="me-3-usuario"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formFoto" className="mb-3">
+                <Form.Label>Foto de Usuario</Form.Label>
+                <Form.Control 
+                  type="file" 
+                  name="foto"
+                  onChange={handleChange}
+                  accept="image/*"
+                  style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
+                  className="me-3-usuario"
+                />
+              </Form.Group>
+
+              <Form.Group controlId="formTipo" className="mb-3">
+                <Form.Label>Tipo de Usuario</Form.Label>
+                <Form.Select 
+                  name="tipo" 
+                  value={formData.tipo} 
+                  onChange={handleChange}
+                  style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
+                  className="me-3-usuario"
+                >
+                  <option value="administrador">Administrador</option>
+                  <option value="empleado">Empleado</option>
+                </Form.Select>
+              </Form.Group>
+
+              {/* Centrar el botón de Registrar */}
+              <div className="text-center ">
+                <Button variant="primary" type="submit" style={{ backgroundColor: '#C6F8CF', color: '#232D47', border: 'none' }}>
+                  Registrar
+                </Button>
+              </div>
+            </Form>
+
+            {/* Enlace para iniciar sesión */}
+            <div className="text-center mt-4">
+              <p style={{ color: '#C6F8CF' }}>¿Ya tienes cuenta? 
+                <Link to="/IniciarSesion" style={{ color: '#FEA099' }}> Iniciar sesión</Link>
+              </p>
+            </div>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+  );
+}
+
+export default RegistroUsuarios;

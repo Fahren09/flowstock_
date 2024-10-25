@@ -1,7 +1,7 @@
 // src/components/Salidas.js
 import React, { useState } from 'react';
-import { Form, Button, ListGroup } from 'react-bootstrap';
-import { FaPlus } from 'react-icons/fa';
+import { Form, Button, ListGroup, Col } from 'react-bootstrap';
+import { FaPlus, FaEdit, FaTrash } from 'react-icons/fa';
 
 function Salida() {
   const [salidas, setSalidas] = useState([
@@ -11,6 +11,7 @@ function Salida() {
 
   const [producto, setProducto] = useState('');
   const [cantidad, setCantidad] = useState('');
+  const [pedido, setPedido] = useState('');
   const [fecha, setFecha] = useState('');
   const [tipoPedido, setTipoPedido] = useState('envio');
   const [socioEmpresa, setSocioEmpresa] = useState('');
@@ -21,68 +22,62 @@ function Salida() {
     setSalidas([...salidas, nuevaSalida]);
     setProducto('');
     setCantidad('');
-    setFecha('');
-    setTipoPedido('envio');
-    setSocioEmpresa('');
-    setEstado('pendiente');
+    setPedido('');
+    //setFecha('');
+    //setTipoPedido('envio');
+    //setSocioEmpresa('');
+    //setEstado('pendiente');
   };
 
   return (
     <div>
-      <h5>Registrar nueva salida</h5>
+      <h5 style={{ color: '#C6F8CF' }}>Registrar nueva salida</h5>
+      <Col xs={9}>
+              <Form.Control 
+                type="text" 
+                placeholder="Buscar..." 
+                style={{ backgroundColor: '#2D4076', borderColor: '#C6F8CF', color: '#C6F8CF' }} 
+                className="search-input"
+              />
+      </Col>
       <Form className="d-flex mb-3">
         <Form.Control
           type="text"
           placeholder="Producto"
-          className="me-2"
+          className="me-2-principal"
           value={producto}
+          style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
           onChange={(e) => setProducto(e.target.value)}
         />
         <Form.Control
           type="number"
           placeholder="Cantidad"
-          className="me-2"
+          className="me-2-principal"
+          style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
           value={cantidad}
           onChange={(e) => setCantidad(e.target.value)}
         />
-        <Form.Control
-          type="date"
-          className="me-2"
-          value={fecha}
-          onChange={(e) => setFecha(e.target.value)}
-        />
-        <Form.Select
-          className="me-2"
-          value={tipoPedido}
-          onChange={(e) => setTipoPedido(e.target.value)}
-        >
-          <option value="envio">Envío</option>
-          <option value="llegada">Llegada</option>
-        </Form.Select>
+
         <Form.Control
           type="text"
-          placeholder="Socio/Empresa"
-          className="me-2"
-          value={socioEmpresa}
-          onChange={(e) => setSocioEmpresa(e.target.value)}
+          placeholder="Pedido"
+          className="me-2-principal"
+          value={pedido}
+          style={{ backgroundColor: '#2D4076',  color: '#C6F8CF',  marginRight: '15px'}}
+          onChange={(e) => setPedido(e.target.value)}
         />
-        <Form.Select
-          className="me-2"
-          value={estado}
-          onChange={(e) => setEstado(e.target.value)}
-        >
-          <option value="pendiente">Pendiente</option>
-          <option value="completado">Completado</option>
-          <option value="cancelado">Cancelado</option>
-        </Form.Select>
-        <Button variant="dark" onClick={handleAgregar}>
+
+        <Button variant="dark" onClick={handleAgregar} 
+        style={{ backgroundColor: '#232D47', color: '#C6F8CF'}} >
           <FaPlus className="me-2" />Agregar
         </Button>
       </Form>
 
       <ListGroup>
         {salidas.map((salida, index) => (
-          <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center">
+          <ListGroup.Item key={index} className="d-flex justify-content-between align-items-center"
+          style={{ backgroundColor: '#232D47', color: '#C6F8CF',border: 'none'}}
+          >
             <div>
               <strong>{salida.producto}</strong> <br />
               <small>Fecha: {salida.fecha}</small><br />
@@ -92,11 +87,15 @@ function Salida() {
             <div>
               <span className="me-3">Cantidad: {salida.cantidad}</span>
               <span className="me-3">Estado: {salida.estado}</span>
-              <Button variant="outline-secondary" size="sm">
-                Editar
+              <Button variant="outline-secondary" size="sm"
+              style={{ backgroundColor: '#C6F8CF', color: '#232D47',border: 'none'}}
+              >
+                <FaEdit />Editar
               </Button>
-              <Button variant="outline-secondary" size="sm" className="ms-2">
-                Eliminar
+              <Button variant="outline-secondary" size="sm" className="ms-2"
+              style={{ backgroundColor: '#C6F8CF', color: '#232D47',border: 'none'}}
+              >
+               <FaTrash /> Eliminar
               </Button>
             </div>
           </ListGroup.Item>
