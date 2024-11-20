@@ -1,0 +1,62 @@
+
+  .container-fluid {
+    background-color: #2D4076; 
+  }
+
+  /* Estilo para los inputs de texto */
+input.search-input,
+input.me-2-principal {
+    color: #C6F8CF !important;
+    background-color: #2D4076 !important;
+    border: none;
+    border-bottom: 3px solid #C6F8CF;
+    outline: none;
+    padding: 0.5rem 0;
+}
+
+/* Cambiar color del placeholder */
+input.search-input::placeholder,
+input.me-2-principal::placeholder {
+    color: #C6F8CF !important;
+    opacity: 1;
+}
+
+/* Estilo para el textarea */
+textarea.me-2-principal {
+    color: #C6F8CF !important;
+    background-color: #2D4076 !important;
+    border: none;
+    border-bottom: 3px solid #C6F8CF;
+    outline: none;
+    padding: 0.5rem 0;
+    resize: vertical; 
+}
+
+/* Cambiar color del placeholder en textarea */
+textarea.me-2-principal::placeholder {
+    color: #C6F8CF !important;
+    opacity: 1;
+}
+
+/* Estilo para el select (combobox) */
+select.me-2-principal {
+    color: #C6F8CF !important;
+    background-color: #2D4076 !important;
+    border: none;
+    border-bottom: 3px solid #C6F8CF;
+    outline: none;
+    padding: 0.5rem 0;
+    appearance: none; 
+}
+
+
+select.me-2-principal::-ms-expand {
+    display: none;
+}
+
+.nav-tabs.custom-tab-border {
+  border-bottom: 4px solid #C6F8CF; 
+}
+
+
+
